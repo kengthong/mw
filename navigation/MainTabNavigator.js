@@ -8,24 +8,7 @@ import WheelsList from '../screens/WheelsList';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-
-const MealWheelStack = createStackNavigator({
-  MealWheel
-})
-
-MealWheel.navigationOptions = {
-  tabBarLabel: 'Meal',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-        ? `ios-information-circle${focused ? '' : '-outline'}`
-        : 'md-information-circle'
-      }
-      />
-  )
-}
+import WheelHome from '../screens/WheelHome';
 
 const WheelsListStack = createStackNavigator({
   WheelsList
@@ -91,8 +74,26 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const WheelHomeStack = createStackNavigator({
+  tabBarLabel: WheelHome,
+});
+
+WheelHomeStack.navigationOptions = {
+  tabBarLabel: 'Wheel Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
-  MealWheelStack,
+  WheelHomeStack,
   WheelsListStack,
   HomeStack,
   LinksStack,
