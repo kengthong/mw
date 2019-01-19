@@ -7,6 +7,7 @@ import MealWheel from '../screens/MealWheel';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import WheelHome from '../screens/WheelHome';
 
 const MealWheelStack = createStackNavigator({
   MealWheel
@@ -72,8 +73,27 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const WheelHomeStack = createStackNavigator({
+  tabBarLabel: WheelHome,
+});
+
+WheelHomeStack.navigationOptions = {
+  tabBarLabel: 'Wheel Home',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   MealWheelStack,
+  WheelHomeStack,
   HomeStack,
   LinksStack,
   SettingsStack,
