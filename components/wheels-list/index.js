@@ -2,6 +2,7 @@ import React from 'react';
 import {
     ListView,
     Image,
+    Dimensions,
     Modal,
     TouchableHighlight,
     TouchableOpacity,
@@ -20,11 +21,10 @@ class WheelsListComponent extends React.Component {
         return (
             <View style={{height: '100%'}}>
                 <HeaderBar />
-                {console.log('data =', data)}
                 
-                <View style={{height: '80%'}}>
+                <View>
                     <ListView
-                        style={{height: '100%'}}
+                        // style={{height: '100%'}}
                         dataSource={this.state.dataSource}
                         renderRow={(rowData) => {
                             const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(rowData.data)
@@ -36,9 +36,31 @@ class WheelsListComponent extends React.Component {
                                         </Text>
                                     </View>
                                     <View style={styles.wheelsRowContainer}>
-                                        <ListView
+
+                                        {rowData.data.map( (wheelObj, index) => {
+                                            return (
+                                                <TouchableHighlight 
+                                                    key={index}
+                                                    onPress={(wheelObj) => this.toggleModal(wheelObj)}
+                                                    underlayColor="rgba(183,211,247,0.3)"
+                                                >
+                                                    <Card>
+                                                        <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow:'hidden' }}>
+                                                            <Image source={require('../../assets/images/wheel.png')} style={{height: 50, width: 50}}/>
+                                                            <View style={{height: 20}}>
+                                                                <Text style={{fontSize: 15, justifyContent:"center", textAlign: 'center'}}>
+                                                                    {wheelObj.name}
+                                                                </Text>
+                                                            </View>
+                                                        </View>
+                                                    </Card>
+                                                </TouchableHighlight>
+                                            )
+                                        })}
+                                        {/* <ListView
                                             dataSource={ds}
-                                            horizontal={true}
+                                            // horizontal={true}
+                                            
                                             renderRow={(wheelObj) => {
                                                 return (
                                                     <TouchableHighlight 
@@ -58,7 +80,7 @@ class WheelsListComponent extends React.Component {
                                                     </TouchableHighlight>
                                                 )
                                             }}
-                                        />
+                                        /> */}
                                     </View>
                                 </View>
                             )
@@ -116,19 +138,19 @@ class WheelsListComponent extends React.Component {
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('edit', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Edit</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('delete', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Delete</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('share', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Share</Text>
                             </TouchableHighlight>
                         </View>
@@ -152,11 +174,24 @@ class WheelsListComponent extends React.Component {
         
     }
 
+    handleSelectChoice = (action, wheelObj) => {
+        console.log('wheelobj=', wheelObj)
+        switch(action) {
+            case 'load':
+                this.toggleModal()
+                this.props.navigate('WheelHomeStack', wheelObj)
+            default:
+                console.log('nothing =', action)
+        }
+    }
+
     toggleModal = (wheelObj) => {
         this.setState({
             modalActive: !this.state.modalActive,
             selectedWheel: wheelObj
         })
+
+        return
     }
 
     // LocationList = () => {

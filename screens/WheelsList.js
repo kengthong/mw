@@ -18,15 +18,22 @@ export default class WheelsList extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
   render() {
+    console.log("props=", this.props)
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <WheelsListComponent />
+          <WheelsListComponent 
+            navigate={this.handleNavigation}/>
         </ScrollView>
       </View>
     );
+  }
+
+  handleNavigation = (name, obj) => {
+    this.props.navigation.navigate(name, {
+      wheelsObj: obj
+    })
   }
 
   _maybeRenderDevelopmentModeWarning() {

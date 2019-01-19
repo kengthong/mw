@@ -66,19 +66,25 @@ export default class HomeScreen extends React.Component {
     // TODO: Add props and default wheel from config
     ramen = {
       name: "Ramen",
-      pic: require("../assets/images/food/1.png")
+      pic: require("../assets/images/food/noodles.png")
     }
     soba = {
-      name: "Soba",
-      pic: require("../assets/images/food/2.png")
+      name: "Salad",
+      pic: require("../assets/images/food/salad.png")
     }
     chickenRice = {
       name: "Chicken Rice",
-      pic: require("../assets/images/food/3.png")
+      pic: require("../assets/images/food/rice.png")
     }
+    sandwich = {
+      name: "Sandwich",
+      pic: require("../assets/images/food/sandwich.png")
+    }
+
+    
     this.state = {
       foodList: [
-        ramen, soba, chickenRice
+        ramen, soba, chickenRice, sandwich
       ],
       rotation: 0,
       rotationDest: 0,
