@@ -3,10 +3,30 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import MealWheel from '../screens/MealWheel';
+import WheelsList from '../screens/WheelsList';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import WheelHome from '../screens/WheelHome';
+
+const WheelsListStack = createStackNavigator({
+  WheelsList
+})
+
+MealWheel.navigationOptions = {
+  tabBarLabel: 'Wheels List',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+        ? `ios-information-circle${focused ? '' : '-outline'}`
+        : 'md-information-circle'
+      }
+      />
+  )
+}
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -74,6 +94,8 @@ WheelHomeStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   WheelHomeStack,
+  MealWheelStack,
+  WheelsListStack,
   HomeStack,
   LinksStack,
   SettingsStack,
