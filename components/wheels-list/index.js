@@ -18,6 +18,8 @@ import styles from './styles';
 
 class WheelsListComponent extends React.Component {
     render() {
+
+        let data = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.state.data)
         return (
             <View style={{height: '100%'}}>
                 <HeaderBar />
@@ -25,7 +27,7 @@ class WheelsListComponent extends React.Component {
                 <View>
                     <ListView
                         // style={{height: '100%'}}
-                        dataSource={this.state.dataSource}
+                        dataSource={data}
                         renderRow={(rowData) => {
                             const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(rowData.data)
                             return (
@@ -57,30 +59,6 @@ class WheelsListComponent extends React.Component {
                                                 </TouchableHighlight>
                                             )
                                         })}
-                                        {/* <ListView
-                                            dataSource={ds}
-                                            // horizontal={true}
-                                            
-                                            renderRow={(wheelObj) => {
-                                                return (
-                                                    <TouchableHighlight 
-                                                        onPress={(wheelObj) => this.toggleModal(wheelObj)}
-                                                        underlayColor="rgba(183,211,247,0.3)"
-                                                    >
-                                                        <Card>
-                                                            <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow:'hidden' }}>
-                                                                <Image source={require('../../assets/images/wheel.png')} style={{height: 50, width: 50}}/>
-                                                                <View style={{height: 20}}>
-                                                                    <Text style={{fontSize: 15, justifyContent:"center", textAlign: 'center'}}>
-                                                                        {wheelObj.name}
-                                                                    </Text>
-                                                                </View>
-                                                            </View>
-                                                        </Card>
-                                                    </TouchableHighlight>
-                                                )
-                                            }}
-                                        /> */}
                                     </View>
                                 </View>
                             )
@@ -122,13 +100,13 @@ class WheelsListComponent extends React.Component {
                         style={styles.modalWrapper}
                         onPress={() => this.toggleModal()}>
                         <View style={styles.modalContainer}>
-                            <TouchableWithoutFeedback >
+                            {/* <TouchableWithoutFeedback >
                                 <View style={{borderBottomWidth: 1, borderStyle: 'solid', borderBottomColor: '#e8e8e8'}, styles.modalChoiceContainer}>
                                     <Text style={{fontSize: 22}}>
                                         Action
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableWithoutFeedback> */}
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
@@ -162,9 +140,8 @@ class WheelsListComponent extends React.Component {
 
     constructor() {
         super();
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          dataSource: ds.cloneWithRows(data),
+          data,
           modalActive: false,
           selectedWheel: {}
         };
@@ -175,11 +152,14 @@ class WheelsListComponent extends React.Component {
     }
 
     handleSelectChoice = (action, wheelObj) => {
-        console.log('wheelobj=', wheelObj)
+        console.log('wheelobj=', action)
         switch(action) {
             case 'load':
                 this.toggleModal()
-                this.props.navigate('WheelHomeStack', wheelObj)
+                this.props.navigate('WheelHome', wheelObj)
+            case 'edit':
+                this.toggleModal()
+                this.props.push('Links', wheelObj)
             default:
                 console.log('nothing =', action)
         }

@@ -14,7 +14,7 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class WheelsList extends React.Component {
+export default class WheelsListScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -24,15 +24,21 @@ export default class WheelsList extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <WheelsListComponent 
-            navigate={this.handleNavigation}/>
+            navigate={this.handleNavigation}
+            push={this.handlePush}/>
         </ScrollView>
       </View>
     );
   }
 
   handleNavigation = (name, obj) => {
-    this.props.navigation.navigate(name, {
-      wheelsObj: obj
+    console.log("this.props=" , this.props.navigation)
+    this.props.navigation.navigate(name)
+  }
+  
+  handlePush = (name, obj) => {
+    this.props.navigation.push(name, {
+      wheelObj: obj
     })
   }
 
