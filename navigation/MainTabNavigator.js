@@ -94,7 +94,6 @@ WheelHomeStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   WheelHomeStack,
-  MealWheelStack,
   WheelsListStack,
   HomeStack,
   LinksStack,
