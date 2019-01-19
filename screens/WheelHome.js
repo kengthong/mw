@@ -42,7 +42,7 @@ function getAnswerAngle(ref, resultIndex) {
   return FULL_CIRCLE_ANGLE / ref.state.foodList.length * resultIndex;
 }
 
-export default class HomeScreen extends React.Component {
+export default class WheelHome extends React.Component {
   constructor(props) {
     super(props)
     // TODO: Add props and default wheel from config
