@@ -9,13 +9,13 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
-
+  
 class HeaderBar extends React.Component {
     render(){
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.labelContainer}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                    <Text style={{fontSize: 20}}>
                         Your list of wheels
                     </Text>
                 </View>
@@ -28,9 +28,9 @@ class HeaderBar extends React.Component {
                             // style={styles.btnContainer}
                             >
                             <Ionicons
-                            name="md-add-circle-outline"
-                            size={30}
-                            color='#757474'
+                            name="md-add"
+                            size={25}
+                            color='#042'
                             // style={styles.btnIcon}
                             />
                         </View>

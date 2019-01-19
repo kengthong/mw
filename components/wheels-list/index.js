@@ -31,7 +31,7 @@ class WheelsListComponent extends React.Component {
                             return (
                                 <View style={styles.locationRowContainer}>
                                     <View style={styles.locationRowSepContainer}>
-                                        <Text style={{fontWeight: 'bold', fontSize: 15, lineHeight: 30}}>
+                                        <Text style={{fontWeight: '300', fontSize: 15, lineHeight: 30}}>
                                             {rowData.title}
                                         </Text>
                                     </View>
