@@ -97,7 +97,7 @@ const data = [
             "Image": "/assets/images/",
             "Active": false
           },
-          {"Name": "Fish & Chips",
+          {"Name": "Garden Salad",
             "Price": "$3.30",
             "Image": "/assets/images/",
             "Active": false

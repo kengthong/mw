@@ -74,7 +74,7 @@ export default class LinksScreen extends React.Component {
                     console.log('canteeen = ', meals)
                   }}
                 />
-                <Text style={{marginTop: 5}}>{item.Name}</Text>
+                <Text style={{marginTop: 5}}>{item.Name} {index} {section.title}</Text>
               </View>
             }
             renderSectionHeader={({section: {title}}) => (
