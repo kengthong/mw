@@ -106,5 +106,25 @@
             "Image": "/assets/images/",
             "Active": false
           }]
-      }]
+      }],
+  "The Deck": [
+    {"Hainanese Chicken Rice":
+    [
+      {"Name": "Steamed Chicken Rice",
+        "Price": "$3.30",
+        "Image": "/assets/images/",
+        "Active": false
+      },
+      {"Name": "Roasted Chicken Rice",
+        "Price": "$3.30",
+        "Image": "/assets/images/",
+        "Active": false
+      },
+      {"Name": "Lemon Chicken Rice Set",
+        "Price": "$3.50",
+        "Image": "/assets/images/",
+        "Active": false
+      }
+    ]
+  }]
 }
