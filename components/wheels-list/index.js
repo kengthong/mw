@@ -3,6 +3,7 @@ import {
     SectionList,
     ListView,
     Image,
+    Dimensions,
     View,
     Text
 } from 'react-native';
@@ -35,11 +36,12 @@ class WheelsListComponent extends React.Component {
                                     <View style={styles.wheelsRowContainer}>
                                         <ListView
                                             dataSource={ds}
-                                            horizontal={true}
+                                            // horizontal={true}
+                                            
                                             renderRow={(wheelObj) => {
                                                 return (
-                                                    <View>
-                                                        <Card>
+                                                    <View style={{flexDirection: 'row', width: '100%'}}>
+                                                        <Card style={{width: 70}}>
                                                             <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Image source={require('../../assets/images/wheel.png')} style={{height: 60, width: 60}}/>
                                                                 <View style={{height: 15}}>
