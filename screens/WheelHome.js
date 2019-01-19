@@ -58,6 +58,8 @@ export default class HomeScreen extends React.Component {
       name: "Chicken Rice",
       pic: require("../assets/images/food/3.png")
     }
+
+    
     this.state = {
       foodList: [
         ramen, soba, chickenRice
