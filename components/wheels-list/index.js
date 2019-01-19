@@ -1,8 +1,11 @@
 import React from 'react';
 import {
-    SectionList,
     ListView,
     Image,
+    Modal,
+    TouchableHighlight,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
     View,
     Text
 } from 'react-native';
@@ -38,7 +41,9 @@ class WheelsListComponent extends React.Component {
                                             horizontal={true}
                                             renderRow={(wheelObj) => {
                                                 return (
-                                                    <View>
+                                                    <TouchableHighlight 
+                                                        onPress={(wheelObj) => this.toggleModal(wheelObj)}
+                                                    >
                                                         <Card>
                                                             <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                                                 <Image source={require('../../assets/images/roulette.png')} style={{height: 60, width: 60}}/>
@@ -49,7 +54,7 @@ class WheelsListComponent extends React.Component {
                                                                 </View>
                                                             </View>
                                                         </Card>
-                                                    </View>
+                                                    </TouchableHighlight>
                                                 )
                                             }}
                                         />
@@ -75,38 +80,55 @@ class WheelsListComponent extends React.Component {
                     </View>
                     
                 </View>
-                {/* <SectionList
-                    renderItem={({item, index, section}) => 
-                        <View index={index}>
-                            <Text>{item.name}</Text>
-                        </View>
-                    }
-                    renderSectionHeader={({section: {title}}) => (
-                        <Text style={{fontWeight: 'bold'}}>{title}</Text>
-                    )}
-                    sections={data}
-                    keyExtractor={(item, index) => item + index}
-                /> */}
 
-                {/* <List>
-                    <ListItem itemDivider>
-                        <Text>A</Text>
-                    </ListItem>                    
-                    <ListItem>
-                        <Text>Aaron Bennet</Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text>Ali Connors</Text>
-                    </ListItem>
-                    <ListItem itemDivider>
-                        <Text>B</Text>
-                    </ListItem>  
-                    <ListItem>
-                        <Text>Bradley Horowitz</Text>
-                    </ListItem>
-                </List> */}
+                {this.renderModal()}
             </View>
         )
+    }
+
+    renderModal = () => {
+        let selectedWheel = this.state.selectedWheel;
+        if(this.state.modalActive) { 
+            return (
+                <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={this.state.modalActive}
+                    onRequestClose={() => this.toggleModal()}>
+                    <TouchableOpacity 
+                        style={styles.modalWrapper}
+                        onPress={() => this.toggleModal()}>
+                        <View style={styles.modalContainer}>
+                            <TouchableWithoutFeedback >
+                                <View style={{borderBottomWidth: 1, borderStyle: 'solid', borderBottomColor: '#e8e8e8'}, styles.modalChoiceContainer}>
+                                    <Text style={{fontSize: 22}}>
+                                        Action
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableHighlight
+                                underlayColor="rgba(0,0,0,0.3)"
+                                style={styles.modalChoiceContainer}
+                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                <Text style={styles.modalChoiceText}>Load</Text>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor="rgba(0,0,0,0.3)"
+                                style={styles.modalChoiceContainer}
+                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                <Text style={styles.modalChoiceText}>Edit</Text>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor="rgba(0,0,0,0.3)"
+                                style={styles.modalChoiceContainer}
+                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                <Text style={styles.modalChoiceText}>Delete</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </TouchableOpacity>
+                </Modal>
+            )
+        }
     }
 
     constructor() {
@@ -114,8 +136,21 @@ class WheelsListComponent extends React.Component {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
           dataSource: ds.cloneWithRows(data),
+          modalActive: false,
+          selectedWheel: {}
         };
-      }
+    }
+
+    handlePickerChange = () =>{
+        
+    }
+
+    toggleModal = (wheelObj) => {
+        this.setState({
+            modalActive: !this.state.modalActive,
+            selectedWheel: wheelObj
+        })
+    }
 
     // LocationList = () => {
     //     return (
