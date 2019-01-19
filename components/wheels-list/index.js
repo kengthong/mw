@@ -47,7 +47,7 @@ class WheelsListComponent extends React.Component {
                                                     >
                                                         <Card>
                                                             <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow:'hidden' }}>
-                                                                <Image source={require('../../assets/images/roulette.png')} style={{height: 50, width: 50}}/>
+                                                                <Image source={require('../../assets/images/wheel.png')} style={{height: 50, width: 50}}/>
                                                                 <View style={{height: 20}}>
                                                                     <Text style={{fontSize: 15, justifyContent:"center", textAlign: 'center'}}>
                                                                         {wheelObj.name}
