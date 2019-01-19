@@ -1,5 +1,5 @@
 const data = [
-  {"title": "The Terrace",
+  {"value": "The Terrace",
   "data": [
       {"title": "Korean Cuisine",
         "data": [
@@ -115,7 +115,7 @@ const data = [
         }
       ],
     },
-  {"title": "The Deck",
+  {"value": "The Deck",
     "data": [
       {"title": "Hainanese Chicken Rice",
         "data": [
