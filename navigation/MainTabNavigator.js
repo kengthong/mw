@@ -4,6 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import MealWheel from '../screens/MealWheel';
+import WheelsList from '../screens/WheelsList';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -14,6 +15,24 @@ const MealWheelStack = createStackNavigator({
 
 MealWheel.navigationOptions = {
   tabBarLabel: 'Meal',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+        ? `ios-information-circle${focused ? '' : '-outline'}`
+        : 'md-information-circle'
+      }
+      />
+  )
+}
+
+const WheelsListStack = createStackNavigator({
+  WheelsList
+})
+
+MealWheel.navigationOptions = {
+  tabBarLabel: 'Wheels List',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -74,6 +93,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   MealWheelStack,
+  WheelsListStack,
   HomeStack,
   LinksStack,
   SettingsStack,
