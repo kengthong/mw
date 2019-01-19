@@ -15,14 +15,16 @@ import { MonoText } from '../components/StyledText';
 
 import Roulette from 'react-native-roulette';
 
-class AppIcon extends React.Component {
+class RouletteItem extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props)
   }
   render() {
     return (
-      <Image source={this.props.logo}></Image>
+      <View>
+        <Image source={this.props.logo}></Image>
+        <Text>{this.props.title}</Text>
+      </View>
     )
   }
 }
@@ -33,15 +35,15 @@ export default class HomeScreen extends React.Component {
     // TODO: Add props and default wheel from config
     ramen = {
       name: "Ramen",
-      pic: ""
+      pic: require("../assets/images/robot-dev.png")
     }
     soba = {
       name: "Soba",
-      pic: ""
+      pic: require("../assets/images/robot-dev.png")
     }
     chickenRice = {
       name: "Chicken Rice",
-      pic: ""
+      pic: require("../assets/images/robot-dev.png")
     }
     this.state = { foodList: [
       ramen, soba, chickenRice
@@ -57,23 +59,19 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-        <Roulette rouletteRotate={10} enableUserRotate={false} onRotate={(props) => console.log(props)} >
-  <AppIcon
-    ref="icon"
-    logo={require('../assets/images/robot-dev.png')}
-    title={"TAPBOO"}
-    onPress={() => console.log("HI")}
-  />
-  <AppIcon
-    ref="icon"
-    logo={require('../assets/images/robot-dev.png')}
-    title="TUCHAT"
-    onPress={() => console.log("HI")}
-  />
-</Roulette>
+        <Roulette rouletteRotate={10} enableUserRotate={true} onRotate={(props) => console.log(props)}>
+          {this.state.foodList.map(function(food, i){
+            return <RouletteItem
+              ref="icon"
+              logo={food.pic}
+              title={food.name}
+              onPress={()=>console.log("Pressed")}
+            />;
+          })}        
+        </Roulette>
           
-          <View style={styles.welcomeContainer}>
-            <Image
+        <View style={styles.welcomeContainer}>
+          <Image
               source={
                 __DEV__
                   ? require('../assets/images/robot-dev.png')
@@ -104,7 +102,7 @@ export default class HomeScreen extends React.Component {
               <View style={styles.buttonContainer2}>
                 <Button
                   title="Spin"
-                  onPress={()=>console.log("Spin")}
+                  onPress={()=>console.log("SPIN")}
                 />
               </View>
 
