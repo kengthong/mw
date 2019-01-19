@@ -13,7 +13,41 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
+import Roulette from 'react-native-roulette';
+
+class AppIcon extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log(props)
+  }
+  render() {
+    return (
+      <Image source={this.props.logo}></Image>
+    )
+  }
+}
+
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    // TODO: Add props and default wheel from config
+    ramen = {
+      name: "Ramen",
+      pic: ""
+    }
+    soba = {
+      name: "Soba",
+      pic: ""
+    }
+    chickenRice = {
+      name: "Chicken Rice",
+      pic: ""
+    }
+    this.state = { foodList: [
+      ramen, soba, chickenRice
+    ]}
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -22,6 +56,22 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+
+        <Roulette rouletteRotate={10} enableUserRotate={false} onRotate={(props) => console.log(props)} >
+  <AppIcon
+    ref="icon"
+    logo={require('../assets/images/robot-dev.png')}
+    title={"TAPBOO"}
+    onPress={() => console.log("HI")}
+  />
+  <AppIcon
+    ref="icon"
+    logo={require('../assets/images/robot-dev.png')}
+    title="TUCHAT"
+    onPress={() => console.log("HI")}
+  />
+</Roulette>
+          
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -34,6 +84,8 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
+
+            <Text>{this.state.foodList.map(food=>food.name).join()}</Text>
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
