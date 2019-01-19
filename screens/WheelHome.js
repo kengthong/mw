@@ -113,7 +113,9 @@ export default class HomeScreen extends React.Component {
                 <Button
                   title="Create"
                   onPress={
-                    () => this.setState({rotation: this.state.rotation + 50})
+                    () => this.props.navigation.navigate(
+                      'Links', {"lala": "lala"}
+                    )
                   }
                 />
               </View>
@@ -136,8 +138,11 @@ export default class HomeScreen extends React.Component {
               <View style={styles.buttonContainer}>
                 <Button
                   title="Select"
-                  onPress={()=>console.log("Select")}
-                />
+                  onPress={
+                    () => this.props.navigation.navigate(
+                      'WheelsList', {"lala": "lala"}
+                    )
+                  }                />
               </View>
             </View>
           </View>
