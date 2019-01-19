@@ -15,8 +15,8 @@ class HeaderBar extends React.Component {
         return (
             <View style={styles.mainContainer}>
                 <View style={styles.labelContainer}>
-                    <Text>
-                        HeaderBar
+                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                        Your list of wheels
                     </Text>
                 </View>
                 <View style={styles.buttonContainer}>
@@ -28,9 +28,9 @@ class HeaderBar extends React.Component {
                             // style={styles.btnContainer}
                             >
                             <Ionicons
-                            name="md-add"
-                            size={25}
-                            color='#042'
+                            name="md-add-circle-outline"
+                            size={30}
+                            color='#757474'
                             // style={styles.btnIcon}
                             />
                         </View>

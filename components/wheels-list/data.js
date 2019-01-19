@@ -3,7 +3,7 @@ const data = [
         title: 'Biz Canteen',
         data: [
             {
-                name: 'fav wheel'
+                name: 'my wheel'
             },
             {
                 name: 'Wheel 1'
@@ -20,7 +20,7 @@ const data = [
         title: 'The Deck',
         data: [
             {
-                name: 'fav wheel'
+                name: 'my hjhjhjhjhhhmeal wheel'
             },
             {
                 name: 'Wheel 1'
