@@ -42,23 +42,26 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <View style={styles.horizontalContainer}>
-            <Button
-              title="Create"
-              style={styles.buttonContainer}
-              onPress={()=>console.log("Create")}
-            />
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Create"
+                  onPress={()=>console.log("Create")}
+                />
+              </View>
 
-            <Button
-              title="Spin"
-              style={styles.buttonContainer}
-              onPress={()=>console.log("Spin")}
-            />
+              <View style={styles.buttonContainer2}>
+                <Button
+                  title="Spin"
+                  onPress={()=>console.log("Spin")}
+                />
+              </View>
 
-            <Button
-              title="Select"
-              style={styles.buttonContainer}
-              onPress={()=>console.log("Select")}
-            />
+              <View style={styles.buttonContainer}>
+                <Button
+                  title="Select"
+                  onPress={()=>console.log("Select")}
+                />
+              </View>
             </View>
           </View>
 
@@ -89,15 +92,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   horizontalContainer: {
-    flex:1,
-    backgroundColor: '#fff',
     flexDirection: "row",
-    alignItems: 'center',
   },
   buttonContainer: {
-    margin: 30,
     flex: 1,
-    backgroundColor:'yellow'
+  },
+  buttonContainer2: {
+    flex: 2,
+    marginHorizontal:15,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   getStartedContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 40,
   },
   homeScreenFilename: {
     marginVertical: 7,
