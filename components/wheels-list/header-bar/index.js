@@ -2,8 +2,11 @@ import React from 'react';
 import {
     Button,
     Text,
+    TouchableHighlight,
     View
 } from 'react-native';
+
+import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
 
@@ -17,9 +20,21 @@ class HeaderBar extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button
-                        title="add"
-                    />
+                    <TouchableHighlight
+                        onPress={this.onBooking} 
+                        // style={styles.btnClickContain}
+                        underlayColor='#042417'>
+                        <View
+                            // style={styles.btnContainer}
+                            >
+                            <Ionicons
+                            name="md-add"
+                            size={25}
+                            color='#042'
+                            // style={styles.btnIcon}
+                            />
+                        </View>
+                    </TouchableHighlight>
                 </View>
             </View>
         )
