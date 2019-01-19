@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     locationRowContainer: {
         flexDirection: 'column',
-        height: 200
+        marginBottom: 8
     },
     locationRowSepContainer: {
         height: 40,
@@ -34,8 +34,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }, 
     wheelsRowContainer: {
-        height: 160,
-        backgroundColor: '#FCFAFA'
+        // backgroundColor: '#FCFAFA',
+        width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     }               
 
 });

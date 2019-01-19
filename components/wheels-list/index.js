@@ -2,6 +2,7 @@ import React from 'react';
 import {
     ListView,
     Image,
+    Dimensions,
     Modal,
     TouchableHighlight,
     TouchableOpacity,
@@ -21,9 +22,9 @@ class WheelsListComponent extends React.Component {
             <View style={{height: '100%'}}>
                 <HeaderBar />
                 
-                <View style={{height: '80%'}}>
+                <View>
                     <ListView
-                        style={{height: '100%'}}
+                        // style={{height: '100%'}}
                         dataSource={this.state.dataSource}
                         renderRow={(rowData) => {
                             const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(rowData.data)
@@ -35,9 +36,31 @@ class WheelsListComponent extends React.Component {
                                         </Text>
                                     </View>
                                     <View style={styles.wheelsRowContainer}>
-                                        <ListView
+
+                                        {rowData.data.map( (wheelObj, index) => {
+                                            return (
+                                                <TouchableHighlight 
+                                                    key={index}
+                                                    onPress={(wheelObj) => this.toggleModal(wheelObj)}
+                                                    underlayColor="rgba(183,211,247,0.3)"
+                                                >
+                                                    <Card>
+                                                        <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow:'hidden' }}>
+                                                            <Image source={require('../../assets/images/wheel.png')} style={{height: 50, width: 50}}/>
+                                                            <View style={{height: 20}}>
+                                                                <Text style={{fontSize: 15, justifyContent:"center", textAlign: 'center'}}>
+                                                                    {wheelObj.name}
+                                                                </Text>
+                                                            </View>
+                                                        </View>
+                                                    </Card>
+                                                </TouchableHighlight>
+                                            )
+                                        })}
+                                        {/* <ListView
                                             dataSource={ds}
-                                            horizontal={true}
+                                            // horizontal={true}
+                                            
                                             renderRow={(wheelObj) => {
                                                 return (
                                                     <TouchableHighlight 
@@ -57,7 +80,7 @@ class WheelsListComponent extends React.Component {
                                                     </TouchableHighlight>
                                                 )
                                             }}
-                                        />
+                                        /> */}
                                     </View>
                                 </View>
                             )
