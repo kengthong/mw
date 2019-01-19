@@ -15,10 +15,32 @@ import { MonoText } from '../components/StyledText';
 import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
+const MIN_SPIN_AMOUNT = 10
+const MAX_SPIN_AMOUNT = 20
+const FULL_CIRCLE_ANGLE = 360
 
+function rotateRoulette(ref) {
+  let rotationLeft = ref.state.rotationDest - ref.state.rotation;
+  let diff = rotationLeft / 50;
+  console.log(diff)
+  if (diff < 1) {
+    clearInterval(ref.state.intervalID)
+  }
+  else
+    ref.setState({rotation: ref.state.rotation + diff})
+}
 
+function getRandomIndex(length) {
+  return Math.floor(Math.random() *length)
+}
 
+function getRandomSpinCount() {
+  return Math.floor(MIN_SPIN_AMOUNT + getRandomIndex(MAX_SPIN_AMOUNT - MIN_SPIN_AMOUNT))
+}
 
+function getAnswerAngle(ref, resultIndex) {
+  return FULL_CIRCLE_ANGLE / ref.state.foodList.length * resultIndex;
+}
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
@@ -26,22 +48,23 @@ export default class HomeScreen extends React.Component {
     // TODO: Add props and default wheel from config
     ramen = {
       name: "Ramen",
-      pic: require("../assets/images/robot-dev.png")
+      pic: require("../assets/images/food/1.png")
     }
     soba = {
       name: "Soba",
-      pic: require("../assets/images/robot-dev.png")
+      pic: require("../assets/images/food/2.png")
     }
     chickenRice = {
       name: "Chicken Rice",
-      pic: require("../assets/images/robot-dev.png")
+      pic: require("../assets/images/food/3.png")
     }
     this.state = {
       foodList: [
         ramen, soba, chickenRice
       ],
       rotation: 0,
-      rotationLeft: 5000,
+      rotationDest: 0,
+      intervalID: null,
     }
   }
 
@@ -57,6 +80,7 @@ export default class HomeScreen extends React.Component {
         <Roulette rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
+              key={i}
               ref="icon"
               logo={food.pic}
               title={food.name}
@@ -100,7 +124,14 @@ export default class HomeScreen extends React.Component {
                 <Button
                   title="Spin"
                   onPress={
-                    () => this.setState({rotation: this.state.rotation + 50})
+                    () => {
+                      this.setState({rotation: 0})
+                      spinCount = getRandomSpinCount();
+                      resultIndex = getRandomIndex(this.state.foodList.length);
+                      rotationDest = FULL_CIRCLE_ANGLE * spinCount + getAnswerAngle(this, resultIndex);
+                      this.setState({rotationDest: rotationDest})
+                      this.setState({intervalID: setInterval(()=>rotateRoulette(this))});
+                    }
                   }                />
               </View>
 
