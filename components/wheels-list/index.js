@@ -43,11 +43,12 @@ class WheelsListComponent extends React.Component {
                                                 return (
                                                     <TouchableHighlight 
                                                         onPress={(wheelObj) => this.toggleModal(wheelObj)}
+                                                        underlayColor="rgba(183,211,247,0.3)"
                                                     >
                                                         <Card>
-                                                            <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                                                <Image source={require('../../assets/images/roulette.png')} style={{height: 60, width: 60}}/>
-                                                                <View style={{height: 15}}>
+                                                            <View style={{width: 70 , height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', overflow:'hidden' }}>
+                                                                <Image source={require('../../assets/images/roulette.png')} style={{height: 50, width: 50}}/>
+                                                                <View style={{height: 20}}>
                                                                     <Text style={{fontSize: 15, justifyContent:"center", textAlign: 'center'}}>
                                                                         {wheelObj.name}
                                                                     </Text>
@@ -123,6 +124,12 @@ class WheelsListComponent extends React.Component {
                                 style={styles.modalChoiceContainer}
                                 onPress={() => this.handleSelectChoice('load', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Delete</Text>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor="rgba(0,0,0,0.3)"
+                                style={styles.modalChoiceContainer}
+                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                <Text style={styles.modalChoiceText}>Share</Text>
                             </TouchableHighlight>
                         </View>
                     </TouchableOpacity>
