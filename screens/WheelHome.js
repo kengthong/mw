@@ -9,15 +9,32 @@ import {
   View,
   Button,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
-import { MonoText } from '../components/StyledText';
 import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
-const MIN_SPIN_AMOUNT = 10
-const MAX_SPIN_AMOUNT = 20
+const MIN_SPIN_AMOUNT = 3
+const MAX_SPIN_AMOUNT = 5
 const FULL_CIRCLE_ANGLE = 360
+
+const STARTING_POINTS = [
+  0,
+  150,
+  120,
+  90,
+  75,
+  60,
+];
+
+function getLandingIndex(ref) {
+  length = ref.state.foodList.length;
+  startingPoint = STARTING_POINTS[length];
+  rotation = ref.state.rotation;
+  adjustedRotation = (rotation - startingPoint) % FULL_CIRCLE_ANGLE;
+  temp = (FULL_CIRCLE_ANGLE - adjustedRotation);
+  console.log(rotation)
+  console.log(temp)
+  return Math.floor(temp / (FULL_CIRCLE_ANGLE / length));
+}
 
 function rotateRoulette(ref) {
   let rotationLeft = ref.state.rotationDest - ref.state.rotation;
@@ -25,6 +42,7 @@ function rotateRoulette(ref) {
   console.log(diff)
   if (diff < 1) {
     clearInterval(ref.state.intervalID)
+    alert("Congrats. Your meal will be " + ref.state.foodList[getLandingIndex(ref)].name)
   }
   else
     ref.setState({rotation: ref.state.rotation + diff})
@@ -76,8 +94,8 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-
-        <Roulette rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
+        <View style={styles.horizontalContainer}>
+          <Roulette rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
               key={i}
@@ -87,29 +105,9 @@ export default class HomeScreen extends React.Component {
               onPress={()=>console.log("Pressed")}
             />;
           })}        
-        </Roulette>
-          
-        <View style={styles.welcomeContainer}>
-          <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
+          </Roulette>
+        </View>
           <View style={styles.getStartedContainer}>
-
-            <Text>{this.state.foodList.map(food=>food.name).join()}</Text>
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
             <View style={styles.horizontalContainer}>
               <View style={styles.buttonContainer}>
                 <Button
@@ -143,26 +141,10 @@ export default class HomeScreen extends React.Component {
               </View>
             </View>
           </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
         </ScrollView>
       </View>
     );
   }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const styles = StyleSheet.create({
