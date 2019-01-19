@@ -16,6 +16,10 @@ import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
 
+
+
+
+
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
@@ -32,9 +36,13 @@ export default class HomeScreen extends React.Component {
       name: "Chicken Rice",
       pic: require("../assets/images/robot-dev.png")
     }
-    this.state = { foodList: [
-      ramen, soba, chickenRice
-    ]}
+    this.state = {
+      foodList: [
+        ramen, soba, chickenRice
+      ],
+      rotation: 0,
+      rotationLeft: 5000,
+    }
   }
 
   static navigationOptions = {
@@ -46,7 +54,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
-        <Roulette rouletteRotate={10} enableUserRotate={true} onRotate={(props) => console.log(props)}>
+        <Roulette rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
               ref="icon"
@@ -82,15 +90,18 @@ export default class HomeScreen extends React.Component {
               <View style={styles.buttonContainer}>
                 <Button
                   title="Create"
-                  onPress={()=>console.log("Create")}
+                  onPress={
+                    () => this.setState({rotation: this.state.rotation + 50})
+                  }
                 />
               </View>
 
               <View style={styles.buttonContainer2}>
                 <Button
                   title="Spin"
-                  onPress={()=>console.log("SPIN")}
-                />
+                  onPress={
+                    () => this.setState({rotation: this.state.rotation + 50})
+                  }                />
               </View>
 
               <View style={styles.buttonContainer}>
