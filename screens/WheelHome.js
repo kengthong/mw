@@ -12,22 +12,9 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
-
-class RouletteItem extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <View>
-        <Image source={this.props.logo}></Image>
-        <Text>{this.props.title}</Text>
-      </View>
-    )
-  }
-}
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
