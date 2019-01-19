@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -51,7 +52,27 @@ export default class HomeScreen extends React.Component {
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
           </View>
+
+          <View style={styles.homeButtons}>
+            <View style={styles.buttonContainer}>
+              <Button
+                onPress={()=> console.log("Create wheel")}
+                title="Create"/>
+            </View>
+            <View style={styles.buttonContainerLarge}>
+              <Button
+                onPress={()=> console.log("Spin wheel")}
+                title="Spin"/>
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                onPress={()=> console.log("Edit wheel")}
+                title="Edit"/>
+            </View>
+          </View>
         </ScrollView>
+
+
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
@@ -103,6 +124,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  homeButtons: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+        flex: 1,
+        marginHorizontal:20,
+    },
+  buttonContainerLarge: {
+        flex: 2,
+        marginHorizontal:10,
+    },
   developmentModeText: {
     marginBottom: 20,
     color: 'rgba(0,0,0,0.4)',
