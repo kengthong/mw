@@ -20,7 +20,6 @@ class WheelsListComponent extends React.Component {
         return (
             <View style={{height: '100%'}}>
                 <HeaderBar />
-                {console.log('data =', data)}
                 
                 <View style={{height: '80%'}}>
                     <ListView
@@ -116,19 +115,19 @@ class WheelsListComponent extends React.Component {
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('edit', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Edit</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('delete', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Delete</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
                                 underlayColor="rgba(0,0,0,0.3)"
                                 style={styles.modalChoiceContainer}
-                                onPress={() => this.handleSelectChoice('load', selectedWheel)}>
+                                onPress={() => this.handleSelectChoice('share', selectedWheel)}>
                                 <Text style={styles.modalChoiceText}>Share</Text>
                             </TouchableHighlight>
                         </View>
@@ -152,11 +151,24 @@ class WheelsListComponent extends React.Component {
         
     }
 
+    handleSelectChoice = (action, wheelObj) => {
+        console.log('wheelobj=', wheelObj)
+        switch(action) {
+            case 'load':
+                this.toggleModal()
+                this.props.navigate('WheelHomeStack', wheelObj)
+            default:
+                console.log('nothing =', action)
+        }
+    }
+
     toggleModal = (wheelObj) => {
         this.setState({
             modalActive: !this.state.modalActive,
             selectedWheel: wheelObj
         })
+
+        return
     }
 
     // LocationList = () => {
