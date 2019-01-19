@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -33,7 +34,6 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
@@ -41,9 +41,25 @@ export default class HomeScreen extends React.Component {
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
 
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
+            <View style={styles.horizontalContainer}>
+            <Button
+              title="Create"
+              style={styles.buttonContainer}
+              onPress={()=>console.log("Create")}
+            />
+
+            <Button
+              title="Spin"
+              style={styles.buttonContainer}
+              onPress={()=>console.log("Spin")}
+            />
+
+            <Button
+              title="Select"
+              style={styles.buttonContainer}
+              onPress={()=>console.log("Select")}
+            />
+            </View>
           </View>
 
           <View style={styles.helpContainer}>
@@ -54,29 +70,6 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
       </View>
     );
-  }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
   }
 
   _handleLearnMorePress = () => {
@@ -94,6 +87,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  horizontalContainer: {
+    flex:1,
+    backgroundColor: '#fff',
+    flexDirection: "row",
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    margin: 30,
+    flex: 1,
+    backgroundColor:'yellow'
   },
   developmentModeText: {
     marginBottom: 20,
