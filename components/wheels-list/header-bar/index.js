@@ -4,6 +4,7 @@ import {
     Text,
     View
 } from 'react-native';
+
 import styles from './styles';
 
 class HeaderBar extends React.Component {
@@ -17,10 +18,7 @@ class HeaderBar extends React.Component {
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button
-                        // onPress={onPressLearnMore}
-                        title="Learn More"
-                        color="#841584"
-                        accessibilityLabel="Learn more about this purple button"
+                        title="add"
                     />
                 </View>
             </View>

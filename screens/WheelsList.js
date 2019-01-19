@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import HeaderBar from '../components/header-bar';
+import WheelsListComponent from '../components/wheels-list';
 
 import { WebBrowser } from 'expo';
 
@@ -23,7 +23,7 @@ export default class WheelsList extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <HeaderBar />
+          <WheelsListComponent />
         </ScrollView>
       </View>
     );
