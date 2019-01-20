@@ -17,7 +17,7 @@ const FULL_CIRCLE_ANGLE = 360
 const STARTING_POINTS = [
   0,
   150,
-  120,
+  38,
   -80,
   310,
   325,
@@ -89,7 +89,7 @@ export default class WheelHome extends React.Component {
     
     this.state = {
       foodList: [
-        ramen, soba, chickenRice, sandwich, bimbimbap
+        ramen, soba
       ],
       rotation: 0,
       rotationDest: 0,
