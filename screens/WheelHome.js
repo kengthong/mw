@@ -18,7 +18,7 @@ const STARTING_POINTS = [
   0,
   150,
   120,
-  90,
+  -80,
   310,
   60,
 ];
@@ -78,15 +78,15 @@ export default class HomeScreen extends React.Component {
       name: "Chicken Rice",
       pic: require("../assets/images/food/rice.png")
     }
-    sandwich = {
+/*     sandwich = {
       name: "Sandwich",
       pic: require("../assets/images/food/sandwich.png")
-    }
+    } */
 
     
     this.state = {
       foodList: [
-        ramen, soba, chickenRice, sandwich
+        ramen, soba, chickenRice
       ],
       rotation: 0,
       rotationDest: 0,
