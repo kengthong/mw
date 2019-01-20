@@ -23,8 +23,10 @@ export default class LinksScreen extends React.Component {
         let stallIndex = tempMeals[locationIndex].data.map(function(stall) {return stall.title;}).indexOf(stallObj.stall);
         console.log("...............................................")
         //console.log(tempMeals[locationIndex].data[stallIndex])
-        let foodItemIndex = tempMeals[locationIndex].data[stallIndex].data.map(function(item) {return item.Name;}).indexOf(foodItem);
+        let foodItemIndex = tempMeals[locationIndex].data[stallIndex].data.map(function(item) {return item.Name;}).indexOf(foodItem.name);
         //let boolean = tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active;
+        console.log(tempMeals[locationIndex].data[stallIndex].data)
+        console.log(foodItem)
         tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active = true;
         /*console.log("stallIndex=",stallIndex);
         console.log("foodItemIndex=", foodItemIndex);
@@ -37,16 +39,17 @@ export default class LinksScreen extends React.Component {
     this.setState({locationIndex:locationIndex});
   }
 
-  componentWillUnmount() {
+  /*componentWillUnmount() {
     console.log("______________________________unmount")
     this.setState({meals: data});
-  }
+  }*/
   render() {
 
     return (
       <ScrollView style={styles.container}>
       <Dropdown
         label='Canteen'
+        value = "The Terrace"
         data={this.state.meals.map(location =>{
           return {'value':location["value"]}
         })}
