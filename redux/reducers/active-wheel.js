@@ -1,3 +1,5 @@
+import data from '../../components/wheels-list/data.js';
+
 let ramen = {
     name: "Ramen",
     pic: require("../../assets/images/food/noodles.png")
@@ -27,7 +29,8 @@ const defaultState = {
         wheelName: "The Best Wheel Ever",
         location: "The Terrace"
     },
-    selectedWheel: {}
+    selectedWheel: {},
+    initWheelsData: data
 }
 
 export const rouletteReducer = (state = defaultState, action) => {
@@ -55,5 +58,43 @@ export const rouletteReducer = (state = defaultState, action) => {
             }
         default:
             return state;
+    }
+
+    case 'SAVE_WHEEL': {
+        let {payload} = action;
+        console.log("initwheelsdata = ", state.initWheelData)
+        newInitWheelsData = state.initWheelsData.map(
+            location => {
+                if(location.title == payload.title) {
+                    return {
+                        title: location.title,
+                        data: location.data.map(
+                            (stall, i) => {
+                                if(stall.stall == payload.wheelObj.data[i].stall) {
+                                    return {
+                                        ...payload.wheelObj.data[i]
+                                    }
+                                } else {
+                                    return stall;
+                                }
+                            }
+                        )
+                    }
+                } else {
+                    return {
+                        ...location
+                    }
+                }
+            }
+        )
+
+        console.log('newInitWheelsData =', newInitWheelsData)
+        // return {
+        //     ...state,
+        //     initWheelsData:
+        // }
+    }
+    default:
+        return state;
     }
 };
