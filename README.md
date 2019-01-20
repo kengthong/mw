@@ -16,12 +16,12 @@ This shows your current collection of wheels. Recall that wheels may be created 
 Clicking on a wheel allows you to:
 1. Load the wheel to spin
 2. Edit selection
-3. Delete the wheel (in progress)
-4. Share the wheel with your friends (<i>in progress</i>)
+3. Delete the wheel (<i>work in progress</i>)
+4. Share the wheel with your friends (<i>work in progress</i>)
 
-A wheel may also be created with the top right '+' icon here (also in progress).
+A wheel may also be created with the top right '+' icon here (<i>work in progress</i>).
 
 # History
 A display showing the chronological order of your results from spinning the wheel. 
-Note: it is currently a work in progress, thus the static display
+Note: it is currently a <i> work in progress</i> , thus the static display.
 
