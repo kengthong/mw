@@ -4,8 +4,6 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
   Button,
 } from 'react-native';
@@ -21,7 +19,7 @@ const STARTING_POINTS = [
   150,
   120,
   90,
-  75,
+  310,
   60,
 ];
 
@@ -57,7 +55,11 @@ function getRandomSpinCount() {
 }
 
 function getAnswerAngle(ref, resultIndex) {
-  return FULL_CIRCLE_ANGLE / ref.state.foodList.length * resultIndex;
+  return getAdjustedRotation(ref, FULL_CIRCLE_ANGLE / ref.state.foodList.length * resultIndex);
+}
+
+function getAdjustedRotation(ref, rotation) {
+  return rotation - STARTING_POINTS[ref.state.foodList.length]
 }
 
 export default class HomeScreen extends React.Component {
