@@ -1,18 +1,74 @@
 const data = [
     {
-        title: 'Biz Canteen',
+        title: 'The Terrace',
         data: [
             {
-                name: 'my wheel'
+                name: 'my wheel',
+                data: [
+                  {
+                    stall: 'Korean Cuisine',
+                    items: ['Kimchi Soup', 'Bimbimbap']
+                  },
+                  {
+                    stall: 'Japanese Cuisine',
+                    items: ['Curry Udon']
+                  },
+                  {
+                    stall: 'Western Food',
+                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                  }
+                ]
             },
             {
-                name: 'Wheel 1'
+                name: 'Wheel 1',
+                data: [
+                  {
+                    stall: 'Korean Cuisine',
+                    items: ['Kimchi Soup', 'Bimbimbap']
+                  },
+                  {
+                    stall: 'Japanese Cuisine',
+                    items: ['Curry Udon']
+                  },
+                  {
+                    stall: 'Western Food',
+                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                  }
+                ]
             },
             {
-                name: 'Wheel 2'
+                name: 'Wheel 2',
+                data: [
+                  {
+                    stall: 'Korean Cuisine',
+                    items: ['Kimchi Soup', 'Bimbimbap']
+                  },
+                  {
+                    stall: 'Japanese Cuisine',
+                    items: ['Curry Udon']
+                  },
+                  {
+                    stall: 'Western Food',
+                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                  }
+                ]
             },
             {
-                name: 'Wheel 3'
+                name: 'Wheel 3',
+                data: [
+                  {
+                    stall: 'Korean Cuisine',
+                    items: ['Kimchi Soup', 'Bimbimbap']
+                  },
+                  {
+                    stall: 'Japanese Cuisine',
+                    items: ['Curry Udon']
+                  },
+                  {
+                    stall: 'Western Food',
+                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                  }
+                ]
             }
         ]
     },
@@ -20,16 +76,40 @@ const data = [
         title: 'The Deck',
         data: [
             {
-                name: 'my hjhjhjhjhhhmeal wheel'
+                name: 'my hjhjhjhjhhhmeal wheel',
+                data: [
+                  {
+                    stall: 'Hainanese Chicken Rice',
+                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                  }
+                ]
             },
             {
-                name: 'Wheel 1'
+                name: 'Wheel 1',
+                data: [
+                  {
+                    stall: 'Hainanese Chicken Rice',
+                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                  }
+                ]
             },
             {
-                name: 'Wheel 2'
+                name: 'Wheel 2',
+                data: [
+                  {
+                    stall: 'Hainanese Chicken Rice',
+                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                  }
+                ]
             },
             {
-                name: 'Wheel 3'
+                name: 'Wheel 3',
+                data: [
+                  {
+                    stall: 'Hainanese Chicken Rice',
+                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                  }
+                ]
             }
         ]
     }

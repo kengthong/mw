@@ -11,6 +11,10 @@ export default class LinksScreen extends React.Component {
   };
 
   render() {
+    const {navigation} = this.props;
+    const wheelObj = navigation.getParam('wheelObj');
+    // console.log("link wheeObj is= ", wheelObj);
+
     return (
       <ScrollView style={styles.container}>
       <Dropdown
@@ -27,14 +31,14 @@ export default class LinksScreen extends React.Component {
           <SectionList
             renderItem={({item, index, section}) =>
               <View style={{flexDirection:'row', marginLeft: 20}}>
-                <CheckBox
+                /*<CheckBox
                   value={item.Active}
                   onValueChange={() => {
                     let locationName = this.state.meals[this.state.locationIndex].value
                     let stallIndex = this.state.meals[this.state.locationIndex].data.map(function(stall) {return stall.title;}).indexOf(section.title);
-                    console.log(stallIndex);
-                    console.log(section.title);
-                    console.log(locationName)
+                    //console.log(stallIndex);
+                    //console.log(section.title);
+                    //console.log(locationName)
                     let meals =
                       this.state.meals.map( (canteen) => {
                         if (canteen.value == locationName) {
@@ -47,7 +51,7 @@ export default class LinksScreen extends React.Component {
                                   data: stall.data.map( (foodItem, _i) => {
                                     if(_i == index) {
                                       console.log('foodItem =', foodItem)
-                                      console.log('active? =', item.Active)
+                                      //console.log('active? =', item.Active)
                                       return {
                                         ...foodItem,
                                         Active: !item.Active
@@ -71,10 +75,10 @@ export default class LinksScreen extends React.Component {
                       meals: meals
                     })
 
-                    console.log('canteeen = ', meals)
+                    //console.log('canteeen = ', meals)
                   }}
-                />
-                <Text style={{marginTop: 5}}>{item.Name} {index} {section.title}</Text>
+                />*/
+                <Text style={{marginTop: 5}}>{item.Name}</Text>
               </View>
             }
             renderSectionHeader={({section: {title}}) => (
