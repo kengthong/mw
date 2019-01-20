@@ -10,15 +10,46 @@ export default class LinksScreen extends React.Component {
     title: 'Links',
   };
 
-  render() {
+  componentDidMount() {
     const {navigation} = this.props;
-    const wheelObj = navigation.getParam('wheelObj');
+    const wheel = navigation.getParam('wheelObj');
     // console.log("link wheeObj is= ", wheelObj);
+    const location = wheel.location;
+    console.log("HELLLLO", wheel.wheelObj);
+    let tempMeals = this.state.meals;
+    let locationIndex = tempMeals.map(function(l) {return l.value;}).indexOf(location);
+    wheel.wheelObj.data.forEach(stallObj => {
+      stallObj.items.forEach(foodItem => {
+        let stallIndex = tempMeals[locationIndex].data.map(function(stall) {return stall.title;}).indexOf(stallObj.stall);
+        console.log("...............................................")
+        //console.log(tempMeals[locationIndex].data[stallIndex])
+        let foodItemIndex = tempMeals[locationIndex].data[stallIndex].data.map(function(item) {return item.Name;}).indexOf(foodItem.name);
+        //let boolean = tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active;
+        console.log(tempMeals[locationIndex].data[stallIndex].data)
+        console.log(foodItem)
+        tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active = true;
+        /*console.log("stallIndex=",stallIndex);
+        console.log("foodItemIndex=", foodItemIndex);
+        console.log("boolean=", boolean);*/
+      })
+    })
+    console.log('---------------------------------------')
+    console.log(tempMeals);
+    this.setState({meals: tempMeals});
+    this.setState({locationIndex:locationIndex});
+  }
+
+  /*componentWillUnmount() {
+    console.log("______________________________unmount")
+    this.setState({meals: data});
+  }*/
+  render() {
 
     return (
       <ScrollView style={styles.container}>
       <Dropdown
         label='Canteen'
+        value = "The Terrace"
         data={this.state.meals.map(location =>{
           return {'value':location["value"]}
         })}
@@ -31,7 +62,7 @@ export default class LinksScreen extends React.Component {
           <SectionList
             renderItem={({item, index, section}) =>
               <View style={{flexDirection:'row', marginLeft: 20}}>
-                /*<CheckBox
+                <CheckBox
                   value={item.Active}
                   onValueChange={() => {
                     let locationName = this.state.meals[this.state.locationIndex].value
@@ -77,7 +108,7 @@ export default class LinksScreen extends React.Component {
 
                     //console.log('canteeen = ', meals)
                   }}
-                />*/
+                />
                 <Text style={{marginTop: 5}}>{item.Name}</Text>
               </View>
             }
