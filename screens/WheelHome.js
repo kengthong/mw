@@ -20,7 +20,7 @@ const STARTING_POINTS = [
   120,
   -80,
   310,
-  60,
+  325,
 ];
 
 function getLandingIndex(ref) {
@@ -78,15 +78,18 @@ export default class WheelHome extends React.Component {
       name: "Chicken Rice",
       pic: require("../assets/images/food/rice.png")
     }
-/*     sandwich = {
+    sandwich = {
       name: "Sandwich",
       pic: require("../assets/images/food/sandwich.png")
-    } */
-
+    },
+    bimbimbap = {
+      name: "Bimbimbap",
+      pic: require("../assets/images/food/Bimbimbap.jpg")
+    }
     
     this.state = {
       foodList: [
-        ramen, soba, chickenRice
+        ramen, soba, chickenRice, sandwich, bimbimbap
       ],
       rotation: 0,
       rotationDest: 0,
@@ -104,7 +107,7 @@ export default class WheelHome extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.rouletteContainer}>
           <Image source={require('../assets/images/pointer.png')}></Image>
-          <Roulette customStyle={{backgroundColor:"#ffffff"}} radius={400} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
+          <Roulette customStyle={{backgroundColor:"#FCD6AE"}} radius={400} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
               key={i}
