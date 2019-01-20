@@ -3,9 +3,10 @@ import { ScrollView, StyleSheet, CheckBox, SectionList, Text, View, Button } fro
 import { ExpoLinksView } from '@expo/samples';
 import data from '../mealSelection.js';
 import { Dropdown } from 'react-native-material-dropdown';
+import { connect } from 'react-redux';
+import { saveWheel } from '../redux/action'
 
-
-export default class LinksScreen extends React.Component {
+class LinksScreen extends React.Component {
   static navigationOptions = {
     title: 'Links',
   };
@@ -35,7 +36,7 @@ export default class LinksScreen extends React.Component {
     })
     console.log('---------------------------------------')
     console.log(tempMeals);
-    this.setState({meals: tempMeals});
+    this.setState({meals: tempMeals, wheelName: wheel.wheelObj.name});
     this.setState({locationIndex:locationIndex});
   }
 
@@ -123,7 +124,7 @@ export default class LinksScreen extends React.Component {
           <View style={{marginVertical: 10}}>
             <Button
               title="Save"
-              onPress={()=>console.log("Save")}
+              onPress={()=>this.handleSave()}
             />
           </View>
         </View> : null
@@ -138,11 +139,49 @@ export default class LinksScreen extends React.Component {
     this.state = {
       checked: false,
       meals: data,
-      locationIndex: -1
+      locationIndex: -1,
+      wheelName: ''
 
     }
   }
+
+  handleSave = () => {
+    console.log('locationIndex=', this.state.locationIndex)
+    let { meals, locationIndex } = this.state;
+    let selectedLocation = meals[locationIndex];
+
+    let selectedFood = selectedLocation.data.map( stall => {
+      return {
+        stall: stall.title,
+        items: stall.data.map( food => {
+          return {
+            name: food.Name,
+            pic: food.Image
+          }
+        })
+      }
+    })
+    let selectedWheel = {
+      title: selectedLocation.value,
+      wheelObj: {
+        name: this.state.wheelName,
+        data: selectedFood
+      }
+    }
+    
+    this.props.saveWheel(selectedWheel)
+    this.props.navigation.pop()
+  }
 }
+
+export default connect(
+  state => ({
+
+  }),
+  dispatch => ({
+    saveWheel: (wheel) => dispatch(saveWheel(wheel))
+  })
+)(LinksScreen);
 
 const styles = StyleSheet.create({
   container: {

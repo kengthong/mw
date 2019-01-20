@@ -1,6 +1,9 @@
+import data from '../../components/wheels-list/data.js';
+
 const defaultState = {
     activeRoulette: {},
-    selectedWheel: {}
+    selectedWheel: {},
+    initWheelsData: data
 }
 
 export const rouletteReducer = (state = defaultState, action) => {
@@ -22,6 +25,41 @@ export const rouletteReducer = (state = defaultState, action) => {
             activeRoulette: newPayload
         }
 
+    }
+
+    case 'SAVE_WHEEL': {
+        let {payload} = action;
+        console.log("initwheelsdata = ", state.initWheelData)
+        newInitWheelsData = state.initWheelsData.map(
+            location => {
+                if(location.title == payload.title) {
+                    return {
+                        title: location.title,
+                        data: location.data.map(
+                            (stall, i) => {
+                                if(stall.stall == payload.wheelObj.data[i].stall) {
+                                    return {
+                                        ...payload.wheelObj.data[i]
+                                    }
+                                } else {
+                                    return stall;
+                                }
+                            }
+                        )
+                    }
+                } else {
+                    return {
+                        ...location
+                    }
+                }
+            }
+        )
+
+        console.log('newInitWheelsData =', newInitWheelsData)
+        // return {
+        //     ...state,
+        //     initWheelsData:
+        // }
     }
     default:
         return state;
