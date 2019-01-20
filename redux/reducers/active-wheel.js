@@ -36,13 +36,15 @@ export const rouletteReducer = (state = defaultState, action) => {
         case 'SET_ACTIVE_WHEEL':
             {
                 console.log("action.payload = ", action.payload)
-                let foodItems = action.payload.wheelObj.data.map(stall => {
-                    return stall.items.map(food => food)
+                let foodList = action.payload.wheelObj.data.map(stall => {
+                    return stall.items.map(food => {return food})
                 })
+                if (foodList)
+                    foodList = [].concat.apply([], foodList);
                 let newPayload = {
                     wheelName: action.payload.wheelObj.name,
                     location: action.payload.location,
-                    foodItems
+                    foodList
                 }
 
                 return {
