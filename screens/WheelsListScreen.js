@@ -23,7 +23,7 @@ export default class WheelsListScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <WheelsListComponent 
+          <WheelsListComponent
             navigate={this.handleNavigation}
             push={this.handlePush}/>
         </ScrollView>
@@ -35,8 +35,9 @@ export default class WheelsListScreen extends React.Component {
     console.log("this.props=" , this.props.navigation)
     this.props.navigation.navigate(name)
   }
-  
+
   handlePush = (name, obj) => {
+    console.log("wheellist obj is=", obj);
     this.props.navigation.push(name, {
       wheelObj: obj
     })
