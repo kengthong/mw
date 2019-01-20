@@ -11,12 +11,13 @@ Here is where you load your custom wheel and are able to:
 
 
 # Wheels List
-This shows your current collection of wheels. Recall that wheels may be created or imported from your friends (a feature in progress)
+This shows your current collection of wheels. Recall that wheels may be created or imported from your friends.
+
 Clicking on a wheel allows you to:
 1. Load the wheel to spin
 2. Edit selection
-3. Delete the wheel (also in progress)
-4. Share the wheel with your friends
+3. Delete the wheel (in progress)
+4. Share the wheel with your friends (<i>in progress</i>)
 
 A wheel may also be created with the top right '+' icon here (also in progress).
 
