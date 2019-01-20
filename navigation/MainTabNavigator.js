@@ -4,7 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import MealWheel from '../screens/MealWheel';
-import WheelsList from '../screens/WheelsList';
+import WheelsListScreen from '../screens/WheelsListScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -12,10 +12,12 @@ import WheelHome from '../screens/WheelHome';
 import HistoryScreen from '../screens/HistoryScreen';
 
 const WheelsListStack = createStackNavigator({
-  WheelsList
+  WheelsList: { screen: WheelsListScreen },
+  Links: {screen : LinksScreen}
+  // Settings: { screen: SettingsScreen }
 })
 
-MealWheel.navigationOptions = {
+WheelsListStack.navigationOptions = {
   tabBarLabel: 'Wheels List',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -91,7 +93,7 @@ HistoryStack.navigationOptions = {
 // };
 
 const WheelHomeStack = createStackNavigator({
-  tabBarLabel: WheelHome,
+  WheelHome: { screen: WheelHome}
 });
 
 WheelHomeStack.navigationOptions = {
@@ -112,7 +114,7 @@ export default createBottomTabNavigator({
   WheelHomeStack,
   WheelsListStack,
   HomeStack,
-  LinksStack,
+//   LinksStack,
   HistoryStack,
   //SettingsStack,
 });
