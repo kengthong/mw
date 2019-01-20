@@ -10,6 +10,7 @@ import {
     View,
     Text
 } from 'react-native';
+import { connect } from 'react-redux';
 import {Card} from 'react-native-elements';
 import HeaderBar from './header-bar';
 import data from './data';
@@ -18,6 +19,7 @@ import styles from './styles';
 
 class WheelsListComponent extends React.Component {
     render() {
+        console.log("this.props =" , this.props)
 
         let data = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(this.state.data)
         return (
@@ -180,4 +182,8 @@ class WheelsListComponent extends React.Component {
     //     )
     // }
 }
-export default WheelsListComponent;
+export default connect(
+    state => ({
+        roulette: state.roulette
+    })
+)(WheelsListComponent);
