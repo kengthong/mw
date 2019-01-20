@@ -9,6 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import WheelHome from '../screens/WheelHome';
+import HistoryScreen from '../screens/HistoryScreen';
 
 const WheelsListStack = createStackNavigator({
   WheelsList: { screen: WheelsListScreen },
@@ -62,19 +63,34 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const HistoryStack = createStackNavigator({
+  History: HistoryScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+HistoryStack.navigationOptions = {
+  tabBarLabel: 'History',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === 'ios' ? 'ios-filing' : 'md-filing'}
     />
   ),
 };
+
+
+// const SettingsStack = createStackNavigator({
+//   Settings: SettingsScreen,
+// });
+
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Settings',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+//     />
+//   ),
+// };
 
 const WheelHomeStack = createStackNavigator({
   WheelHome: { screen: WheelHome}
@@ -98,6 +114,7 @@ export default createBottomTabNavigator({
   WheelHomeStack,
   WheelsListStack,
   HomeStack,
-  // LinksStack,
-  SettingsStack,
+//   LinksStack,
+  HistoryStack,
+  //SettingsStack,
 });
