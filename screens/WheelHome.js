@@ -100,8 +100,9 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.horizontalContainer}>
-          <Roulette rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
+        <View style={styles.rouletteContainer}>
+          <Image source={require('../assets/images/pointer.png')}></Image>
+          <Roulette customStyle={{backgroundColor:"#ffffff"}} radius={400} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
               key={i}
@@ -159,6 +160,10 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  rouletteContainer: {
+    flexDirection: "column",
+    alignItems:'center',
+  },  
   container: {
     flex: 1,
     backgroundColor: '#fff',
