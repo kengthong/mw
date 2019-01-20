@@ -44,14 +44,14 @@ export default class HistoryScreen extends React.Component {
                 return (
                     <View>
                         <View>
-                            <Text style={{fontSize: 16, backgroundColor: '#99d0fc'}}>
+                            <Text style={{fontSize: 16, textDecorationLine: 'underline', fontWeight: 'bold'}}>
                                 {item.title}
                             </Text>
                         </View>
                         {item.data.map( (food, i) => {
                             return (
                                 <View key={i}> 
-                                    <Text style ={{fontWeight: 'bold', lineHeight: 40}}>
+                                    <Text style ={{lineHeight: 40, marginLeft: 10}}>
                                         {food}
                                     </Text>
                                 </View>
@@ -61,7 +61,7 @@ export default class HistoryScreen extends React.Component {
                 )
             }}
             renderSectionHeader={({section: {title}}) => 
-                <View style= {{flexDirection:'row', backgroundColor: 'rgba(247,247,247,1.0)', height: 30, alignItems: 'center'}}> 
+                <View style= {{flexDirection:'row', backgroundColor: '#add6f7', height: 30, alignItems: 'center'}}> 
                     <Text style={{fontWeight: '300', lineHeight: 30, fontSize: 20, height: 40}}>{title}</Text>
                 </View>
             }
