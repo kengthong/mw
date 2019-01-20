@@ -12,31 +12,33 @@ export default class LinksScreen extends React.Component {
 
   componentDidMount() {
     const {navigation} = this.props;
-    const wheel = navigation.getParam('wheelObj');
-    // console.log("link wheeObj is= ", wheelObj);
-    const location = wheel.location;
-    console.log("HELLLLO", wheel.wheelObj);
-    let tempMeals = this.state.meals;
-    let locationIndex = tempMeals.map(function(l) {return l.value;}).indexOf(location);
-    wheel.wheelObj.data.forEach(stallObj => {
-      stallObj.items.forEach(foodItem => {
-        let stallIndex = tempMeals[locationIndex].data.map(function(stall) {return stall.title;}).indexOf(stallObj.stall);
-        console.log("...............................................")
-        //console.log(tempMeals[locationIndex].data[stallIndex])
-        let foodItemIndex = tempMeals[locationIndex].data[stallIndex].data.map(function(item) {return item.Name;}).indexOf(foodItem.name);
-        //let boolean = tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active;
-        console.log(tempMeals[locationIndex].data[stallIndex].data)
-        console.log(foodItem)
-        tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active = true;
-        /*console.log("stallIndex=",stallIndex);
-        console.log("foodItemIndex=", foodItemIndex);
-        console.log("boolean=", boolean);*/
+    const wheel = navigation.getParam('wheelObj', null);
+    if (wheel) {
+      // console.log("link wheeObj is= ", wheelObj);
+      const location = wheel.location;
+      console.log("HELLLLO", wheel.wheelObj);
+      let tempMeals = this.state.meals;
+      let locationIndex = tempMeals.map(function(l) {return l.value;}).indexOf(location);
+      wheel.wheelObj.data.forEach(stallObj => {
+        stallObj.items.forEach(foodItem => {
+          let stallIndex = tempMeals[locationIndex].data.map(function(stall) {return stall.title;}).indexOf(stallObj.stall);
+          console.log("...............................................")
+          //console.log(tempMeals[locationIndex].data[stallIndex])
+          let foodItemIndex = tempMeals[locationIndex].data[stallIndex].data.map(function(item) {return item.Name;}).indexOf(foodItem.name);
+          //let boolean = tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active;
+          console.log(tempMeals[locationIndex].data[stallIndex].data)
+          console.log(foodItem)
+          tempMeals[locationIndex].data[stallIndex].data[foodItemIndex].Active = true;
+          /*console.log("stallIndex=",stallIndex);
+          console.log("foodItemIndex=", foodItemIndex);
+          console.log("boolean=", boolean);*/
+        })
       })
-    })
-    console.log('---------------------------------------')
-    console.log(tempMeals);
-    this.setState({meals: tempMeals});
-    this.setState({locationIndex:locationIndex});
+      console.log('---------------------------------------')
+      console.log(tempMeals);
+      this.setState({meals: tempMeals});
+      this.setState({locationIndex:locationIndex});
+    }
   }
 
   /*componentWillUnmount() {
@@ -44,12 +46,12 @@ export default class LinksScreen extends React.Component {
     this.setState({meals: data});
   }*/
   render() {
-
+    console.log(this.state.meals[this.state.locationIndex].value)
     return (
       <ScrollView style={styles.container}>
       <Dropdown
         label='Canteen'
-        value = "The Terrace"
+        value = {this.state.meals[this.state.locationIndex].value}
         data={this.state.meals.map(location =>{
           return {'value':location["value"]}
         })}
@@ -138,7 +140,7 @@ export default class LinksScreen extends React.Component {
     this.state = {
       checked: false,
       meals: data,
-      locationIndex: -1
+      locationIndex: 0
 
     }
   }
