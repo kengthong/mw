@@ -9,7 +9,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles';
-  
+
 class HeaderBar extends React.Component {
     render(){
         return (
@@ -21,7 +21,7 @@ class HeaderBar extends React.Component {
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableHighlight
-                        onPress={this.onBooking} 
+                        onPress={this.onBooking}
                         // style={styles.btnClickContain}
                         underlayColor='#042417'>
                         <View
