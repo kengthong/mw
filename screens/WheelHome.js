@@ -11,9 +11,11 @@ import { connect } from 'react-redux';
 import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
+
 const MIN_SPIN_AMOUNT = 3
 const MAX_SPIN_AMOUNT = 5
 const FULL_CIRCLE_ANGLE = 360
+
 
 const STARTING_POINTS = [
   0,
@@ -105,7 +107,7 @@ class WheelHome extends React.Component {
   }
 
   static navigationOptions = {
-    header: null,
+    title: 'The Meal Wheel',
   };
 
   render() {
@@ -114,7 +116,7 @@ class WheelHome extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.rouletteContainer}>
           <Image source={require('../assets/images/pointer.png')}></Image>
-          <Roulette customStyle={{backgroundColor:"#FCD6AE"}} radius={400} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
+          <Roulette customStyle={{backgroundColor:"#FCD6AE"}} radius={380} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
           {this.state.foodList.map(function(food, i){
             return <RouletteItem
               key={i}
@@ -125,6 +127,7 @@ class WheelHome extends React.Component {
             />;
           })}        
           </Roulette>
+          
         </View>
           <View style={styles.getStartedContainer}>
             <View style={styles.horizontalContainer}>
@@ -174,7 +177,7 @@ class WheelHome extends React.Component {
 export default connect(
   state => ({
     roulette: state.roulette
-  })
+  }),
 )(WheelHome);
 
 const styles = StyleSheet.create({
@@ -221,6 +224,7 @@ const styles = StyleSheet.create({
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 40,
+    marginTop: 10
   },
   homeScreenFilename: {
     marginVertical: 7,
