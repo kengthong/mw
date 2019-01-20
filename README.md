@@ -1,4 +1,4 @@
-# The Meal Wheel (mw)
+ER - # The Meal Wheel (mw)
 This app is designed to generate a random meal based on one's chosen range of meals. 
 The current scope is limited to meals in canteens in NUS, where we found that many students often find it difficult to choose what to eat, given the wide variety of choices.
 Wheels are categorised by canteens with the respective meal offerings.
@@ -25,3 +25,8 @@ A wheel may also be created with the top right '+' icon here (<i>work in progres
 A display showing the chronological order of your results from spinning the wheel. 
 Note: it is currently a <i> work in progress</i> , thus the static display.
 
+Done by:
+281
+285
+288
+363
