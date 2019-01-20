@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   Button,
+  Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 import RouletteItem from '../components/RouletteItem';
@@ -27,23 +28,20 @@ const STARTING_POINTS = [
 ];
 
 function getLandingIndex(ref) {
-  length = ref.state.foodList.length;
+  length = ref.state.activeRoulette.foodList.length;
   startingPoint = STARTING_POINTS[length];
   rotation = ref.state.rotation;
   adjustedRotation = (rotation - startingPoint) % FULL_CIRCLE_ANGLE;
   temp = (FULL_CIRCLE_ANGLE - adjustedRotation);
-  console.log(rotation)
-  console.log(temp)
   return Math.floor(temp / (FULL_CIRCLE_ANGLE / length));
 }
 
 function rotateRoulette(ref) {
   let rotationLeft = ref.state.rotationDest - ref.state.rotation;
   let diff = rotationLeft / 50;
-  console.log(diff)
   if (diff < 1) {
     clearInterval(ref.state.intervalID)
-    alert("Congrats. Your meal will be " + ref.state.foodList[getLandingIndex(ref)].name)
+    alert("Congrats. Your meal will be " + ref.stateactiveRoulette.foodList[getLandingIndex(ref)].name)
   }
   else
     ref.setState({rotation: ref.state.rotation + diff})
@@ -58,52 +56,36 @@ function getRandomSpinCount() {
 }
 
 function getAnswerAngle(ref, resultIndex) {
-  return getAdjustedRotation(ref, FULL_CIRCLE_ANGLE / ref.state.foodList.length * resultIndex);
+  return getAdjustedRotation(ref, FULL_CIRCLE_ANGLE / ref.state.activeRoulette.foodList.length * resultIndex);
 }
 
 function getAdjustedRotation(ref, rotation) {
-  return rotation - STARTING_POINTS[ref.state.foodList.length]
+  return rotation - STARTING_POINTS[ref.state.activeRoulette.foodList.length]
 }
 
 class WheelHome extends React.Component {
   constructor(props) {
     super(props)
-    // TODO: Add props and default wheel from config
-    ramen = {
-      name: "Ramen",
-      pic: require("../assets/images/food/noodles.png")
-    }
-    soba = {
-      name: "Salad",
-      pic: require("../assets/images/food/salad.png")
-    }
-    chickenRice = {
-      name: "Chicken Rice",
-      pic: require("../assets/images/food/rice.png")
-    }
-    sandwich = {
-      name: "Sandwich",
-      pic: require("../assets/images/food/sandwich.png")
-    },
-    bimbimbap = {
-      name: "Bimbimbap",
-      pic: require("../assets/images/food/Bimbimbap.jpg")
-    }
-    
-    this.state = {
-      foodList: [
-        ramen, soba
-      ],
-      rotation: 0,
-      rotationDest: 0,
-      intervalID: null,
-    }
   }
 
   componentWillMount(){
+    console.log("============Component Will Mount=============")
     this.setState({
+      rotation: 0,
+      rotationDest: 0,
+      intervalID: null,
       activeRoulette: this.props.roulette.activeRoulette
     })
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log("****************************RECEIVING PROPS**********")
+    console.log(newProps.roulette.activeRoulette)
+    if(newProps.roulette.activeRoulette !== this.state.activeRoulette) {
+      this.setState({
+        activeRoulette: newProps.roulette.activeRoulette
+      })
+    }
   }
 
   static navigationOptions = {
@@ -115,9 +97,13 @@ class WheelHome extends React.Component {
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.rouletteContainer}>
+          <Text>{this.state.activeRoulette.wheelName}</Text>
+          <Text>{this.state.activeRoulette.location}</Text>
+        </View>
+        <View style={styles.rouletteContainer}>
           <Image source={require('../assets/images/pointer.png')}></Image>
-          <Roulette customStyle={{backgroundColor:"#FCD6AE"}} radius={380} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
-          {this.state.foodList.map(function(food, i){
+          <Roulette customStyle={{backgroundColor:"#FCD6AE"}} radius={400} rouletteRotate={this.state.rotation} onRotate={(props) => console.log(props)} onPress={()=>console.log("HI")}>
+          {this.state.activeRoulette.foodList.map(function(food, i){
             return <RouletteItem
               key={i}
               ref="icon"
@@ -149,7 +135,7 @@ class WheelHome extends React.Component {
                     () => {
                       this.setState({rotation: 0})
                       spinCount = getRandomSpinCount();
-                      resultIndex = getRandomIndex(this.state.foodList.length);
+                      resultIndex = getRandomIndex(this.state.activeRoulette.foodList.length);
                       rotationDest = FULL_CIRCLE_ANGLE * spinCount + getAnswerAngle(this, resultIndex);
                       this.setState({rotationDest: rotationDest})
                       this.setState({intervalID: setInterval(()=>rotateRoulette(this))});
