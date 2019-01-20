@@ -4,17 +4,20 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import MealWheel from '../screens/MealWheel';
-import WheelsList from '../screens/WheelsList';
+import WheelsListScreen from '../screens/WheelsListScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import WheelHome from '../screens/WheelHome';
+import HistoryScreen from '../screens/HistoryScreen';
 
 const WheelsListStack = createStackNavigator({
-  WheelsList
+  WheelsList: { screen: WheelsListScreen },
+  Links: {screen : LinksScreen}
+  // Settings: { screen: SettingsScreen }
 })
 
-MealWheel.navigationOptions = {
+WheelsListStack.navigationOptions = {
   tabBarLabel: 'Wheels List',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -60,22 +63,37 @@ LinksStack.navigationOptions = {
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const HistoryStack = createStackNavigator({
+  History: HistoryScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+HistoryStack.navigationOptions = {
+  tabBarLabel: 'History',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      name={Platform.OS === 'ios' ? 'ios-filing' : 'md-filing'}
     />
   ),
 };
 
+
+// const SettingsStack = createStackNavigator({
+//   Settings: SettingsScreen,
+// });
+
+// SettingsStack.navigationOptions = {
+//   tabBarLabel: 'Settings',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+//     />
+//   ),
+// };
+
 const WheelHomeStack = createStackNavigator({
-  tabBarLabel: WheelHome,
+  WheelHome: { screen: WheelHome}
 });
 
 WheelHomeStack.navigationOptions = {
@@ -96,6 +114,7 @@ export default createBottomTabNavigator({
   WheelHomeStack,
   WheelsListStack,
   HomeStack,
-  LinksStack,
-  SettingsStack,
+//   LinksStack,
+  HistoryStack,
+  //SettingsStack,
 });

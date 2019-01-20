@@ -14,19 +14,33 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class WheelsList extends React.Component {
+export default class WheelsListScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
   render() {
+    console.log("props=", this.props)
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <WheelsListComponent />
+          <WheelsListComponent
+            navigate={this.handleNavigation}
+            push={this.handlePush}/>
         </ScrollView>
       </View>
     );
+  }
+
+  handleNavigation = (name, obj) => {
+    console.log("this.props=" , this.props.navigation)
+    this.props.navigation.navigate(name)
+  }
+
+  handlePush = (name, obj) => {
+    console.log("wheellist obj is=", obj);
+    this.props.navigation.push(name, {
+      wheelObj: obj
+    })
   }
 
   _maybeRenderDevelopmentModeWarning() {

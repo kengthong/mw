@@ -1,5 +1,5 @@
 const data = [
-  {"title": "The Terrace",
+  {"value": "The Terrace",
   "data": [
       {"title": "Korean Cuisine",
         "data": [
@@ -97,7 +97,7 @@ const data = [
             "Image": "/assets/images/",
             "Active": false
           },
-          {"Name": "Fish & Chips",
+          {"Name": "Garden Salad",
             "Price": "$3.30",
             "Image": "/assets/images/",
             "Active": false
@@ -115,7 +115,7 @@ const data = [
         }
       ],
     },
-  {"title": "The Deck",
+  {"value": "The Deck",
     "data": [
       {"title": "Hainanese Chicken Rice",
         "data": [
