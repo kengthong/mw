@@ -15,6 +15,8 @@ import {Card} from 'react-native-elements';
 import HeaderBar from './header-bar';
 import data from './data';
 
+import { setActiveWheel } from '../../redux/action';
+
 import styles from './styles';
 
 class WheelsListComponent extends React.Component {
@@ -41,7 +43,6 @@ class WheelsListComponent extends React.Component {
                                     </View>
                                     <View style={styles.wheelsRowContainer}>
                                         {rowData.data.map( (wheelObj, index) => {
-                                          //console.log('forloop wheelObj', wheelObj, ', index=', index)
                                             return (
                                                 <TouchableHighlight
                                                     key={index}
@@ -167,16 +168,12 @@ class WheelsListComponent extends React.Component {
         let selectedWheel = this.state.selectedWheel;
         let selectedLocation = this.state.selectedLocation;
         console.log('index wheelobj=', selectedWheel)
-        switch(action) {
-            case 'load':
-                this.toggleModal()
-                this.props.navigate('WheelHome', {wheelObj: selectedWheel, location: selectedLocation})
-            case 'edit':
-                this.toggleModal()
-                console.log("passed wheelobj=", {wheelObj: selectedWheel, location: selectedLocation})
-                this.props.push('Links', {wheelObj: selectedWheel, location: selectedLocation})
-            default:
-                console.log('nothing =', action)
+        if(action == 'load') {
+            this.toggleModal()
+            this.props.setActiveWheel({wheelObj: selectedWheel, location: selectedLocation})
+        } else if(action == 'edit') {
+            this.toggleModal()
+            this.props.push('Links', {wheelObj: selectedWheel, location: selectedLocation})
         }
     }
 
@@ -198,5 +195,8 @@ class WheelsListComponent extends React.Component {
 export default connect(
     state => ({
         roulette: state.roulette
+    }),
+    dispatch => ({
+        setActiveWheel: (obj) => dispatch(setActiveWheel(obj))
     })
 )(WheelsListComponent);

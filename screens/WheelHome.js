@@ -7,6 +7,7 @@ import {
   View,
   Button,
 } from 'react-native';
+import { connect } from 'react-redux';
 import RouletteItem from '../components/RouletteItem';
 
 import Roulette from 'react-native-roulette';
@@ -62,7 +63,7 @@ function getAdjustedRotation(ref, rotation) {
   return rotation - STARTING_POINTS[ref.state.foodList.length]
 }
 
-export default class WheelHome extends React.Component {
+class WheelHome extends React.Component {
   constructor(props) {
     super(props)
     // TODO: Add props and default wheel from config
@@ -92,6 +93,12 @@ export default class WheelHome extends React.Component {
       rotationDest: 0,
       intervalID: null,
     }
+  }
+
+  componentWillMount(){
+    this.setState({
+      activeRoulette: this.props.roulette.activeRoulette
+    })
   }
 
   static navigationOptions = {
@@ -160,6 +167,12 @@ export default class WheelHome extends React.Component {
     );
   }
 }
+
+export default connect(
+  state => ({
+    roulette: state.roulette
+  })
+)(WheelHome);
 
 const styles = StyleSheet.create({
   rouletteContainer: {

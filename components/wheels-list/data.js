@@ -7,15 +7,38 @@ const data = [
                 data: [
                   {
                     stall: 'Korean Cuisine',
-                    items: ['Kimchi Soup', 'Bimbimbap']
+                    items: [
+                        {
+                            name: 'Kimchi Soup', 
+                            pic: require('../../assets/images/food/ramen.png')
+                        },
+                        {
+                            name: 'Bimbimbap', 
+                            pic: require('../../assets/images/food/Bimbimbap.jpg')
+                        }
+                    ]
                   },
                   {
                     stall: 'Japanese Cuisine',
-                    items: ['Curry Udon']
+                    items: [
+                        {
+                            name: 'Curry Udon',
+                            pic: require('../../assets/images/food/noodles.png')
+                        }
+                    ]
                   },
                   {
                     stall: 'Western Food',
-                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                    items: [
+                        {
+                            name: 'Garden Salad', 
+                            pic: require('../../assets/images/food/salad.png')
+                        },
+                        {
+                            name: 'Grilled Chicken and Pasta', 
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -24,15 +47,38 @@ const data = [
                 data: [
                   {
                     stall: 'Korean Cuisine',
-                    items: ['Kimchi Soup', 'Bimbimbap']
+                    items: [
+                        {
+                            name: 'Kimchi Soup', 
+                            pic: require('../../assets/images/food/ramen.png')
+                        },
+                        {
+                            name: 'Bimbimbap', 
+                            pic: require('../../assets/images/food/Bimbimbap.jpg')
+                        }
+                    ]
                   },
                   {
                     stall: 'Japanese Cuisine',
-                    items: ['Curry Udon']
+                    items: [
+                        {
+                            name: 'Curry Udon',
+                            pic: require('../../assets/images/food/noodles.png')
+                        }
+                    ]
                   },
                   {
                     stall: 'Western Food',
-                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                    items: [
+                        {
+                            name: 'Garden Salad', 
+                            pic: require('../../assets/images/food/salad.png')
+                        },
+                        {
+                            name: 'Grilled Chicken and Pasta', 
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -41,15 +87,38 @@ const data = [
                 data: [
                   {
                     stall: 'Korean Cuisine',
-                    items: ['Kimchi Soup', 'Bimbimbap']
+                    items: [
+                        {
+                            name: 'Kimchi Soup', 
+                            pic: require('../../assets/images/food/ramen.png')
+                        },
+                        {
+                            name: 'Bimbimbap', 
+                            pic: require('../../assets/images/food/Bimbimbap.jpg')
+                        }
+                    ]
                   },
                   {
                     stall: 'Japanese Cuisine',
-                    items: ['Curry Udon']
+                    items: [
+                        {
+                            name: 'Curry Udon',
+                            pic: require('../../assets/images/food/noodles.png')
+                        }
+                    ]
                   },
                   {
                     stall: 'Western Food',
-                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                    items: [
+                        {
+                            name: 'Garden Salad', 
+                            pic: require('../../assets/images/food/salad.png')
+                        },
+                        {
+                            name: 'Grilled Chicken and Pasta', 
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -58,15 +127,38 @@ const data = [
                 data: [
                   {
                     stall: 'Korean Cuisine',
-                    items: ['Kimchi Soup', 'Bimbimbap']
+                    items: [
+                        {
+                            name: 'Kimchi Soup', 
+                            pic: require('../../assets/images/food/ramen.png')
+                        },
+                        {
+                            name: 'Bimbimbap', 
+                            pic: require('../../assets/images/food/Bimbimbap.jpg')
+                        }
+                    ]
                   },
                   {
                     stall: 'Japanese Cuisine',
-                    items: ['Curry Udon']
+                    items: [
+                        {
+                            name: 'Curry Udon',
+                            pic: require('../../assets/images/food/noodles.png')
+                        }
+                    ]
                   },
                   {
                     stall: 'Western Food',
-                    items: ['Garden Salad', 'Grilled Chicken and Pasta']
+                    items: [
+                        {
+                            name: 'Garden Salad', 
+                            pic: require('../../assets/images/food/salad.png')
+                        },
+                        {
+                            name: 'Grilled Chicken and Pasta', 
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             }
@@ -80,7 +172,16 @@ const data = [
                 data: [
                   {
                     stall: 'Hainanese Chicken Rice',
-                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                    items: [
+                        {
+                            name: 'Steamed Chicken Rice',
+                            pic: require('../../assets/images/food/steamed-chicken-rice.jpg')
+                        },
+                        {
+                            name: 'Roasted Chicken Rice',
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -89,7 +190,16 @@ const data = [
                 data: [
                   {
                     stall: 'Hainanese Chicken Rice',
-                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                    items: [
+                        {
+                            name: 'Steamed Chicken Rice',
+                            pic: require('../../assets/images/food/steamed-chicken-rice.jpg')
+                        },
+                        {
+                            name: 'Roasted Chicken Rice',
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -98,7 +208,16 @@ const data = [
                 data: [
                   {
                     stall: 'Hainanese Chicken Rice',
-                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                    items: [
+                        {
+                            name: 'Steamed Chicken Rice',
+                            pic: require('../../assets/images/food/steamed-chicken-rice.jpg')
+                        },
+                        {
+                            name: 'Roasted Chicken Rice',
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             },
@@ -107,7 +226,16 @@ const data = [
                 data: [
                   {
                     stall: 'Hainanese Chicken Rice',
-                    items: ['Steamed Chicken Rice', 'Roasted Chicken Rice']
+                    items: [
+                        {
+                            name: 'Steamed Chicken Rice',
+                            pic: require('../../assets/images/food/steamed-chicken-rice.jpg')
+                        },
+                        {
+                            name: 'Roasted Chicken Rice',
+                            pic: require('../../assets/images/food/rice.png')
+                        }
+                    ]
                   }
                 ]
             }
