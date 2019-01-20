@@ -41,7 +41,7 @@ function rotateRoulette(ref) {
   let diff = rotationLeft / 50;
   if (diff < 1) {
     clearInterval(ref.state.intervalID)
-    alert("Congrats. Your meal will be " + ref.stateactiveRoulette.foodList[getLandingIndex(ref)].name)
+    alert("Congrats. Your meal will be " + ref.state.activeRoulette.foodList[getLandingIndex(ref)].name)
   }
   else
     ref.setState({rotation: ref.state.rotation + diff})
