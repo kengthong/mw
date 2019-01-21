@@ -36,6 +36,7 @@ const defaultState = {
 export const rouletteReducer = (state = defaultState, action) => {
     console.log('default test=', defaultState)
     switch (action.type) {
+
         case 'SET_ACTIVE_WHEEL':
             {
                 console.log("action.payload = ", action.payload)
@@ -56,45 +57,43 @@ export const rouletteReducer = (state = defaultState, action) => {
                 }
 
             }
-        default:
-            return state;
-    }
 
-    case 'SAVE_WHEEL': {
-        let {payload} = action;
-        console.log("initwheelsdata = ", state.initWheelData)
-        newInitWheelsData = state.initWheelsData.map(
-            location => {
-                if(location.title == payload.title) {
-                    return {
-                        title: location.title,
-                        data: location.data.map(
-                            (stall, i) => {
-                                if(stall.stall == payload.wheelObj.data[i].stall) {
-                                    return {
-                                        ...payload.wheelObj.data[i]
+        case 'SAVE_WHEEL': 
+        {
+            let {payload} = action;
+            newInitWheelsData = state.initWheelsData.map(
+                location => {
+                    if(location.title == payload.title) {
+                        return {
+                            title: location.title,
+                            data: location.data.map(
+                                (stall, i) => {
+                                    if(stall.stall == payload.wheelObj.data[i].stall) {
+                                        return {
+                                            ...payload.wheelObj.data[i]
+                                        }
+                                    } else {
+                                        return stall;
                                     }
-                                } else {
-                                    return stall;
                                 }
-                            }
-                        )
-                    }
-                } else {
-                    return {
-                        ...location
+                            )
+                        }
+                    } else {
+                        return {
+                            ...location
+                        }
                     }
                 }
-            }
-        )
+            )
 
-        console.log('newInitWheelsData =', newInitWheelsData)
-        // return {
-        //     ...state,
-        //     initWheelsData:
-        // }
-    }
-    default:
-        return state;
+            console.log('newInitWheelsData =', newInitWheelsData)
+            // return {
+            //     ...state,
+            //     initWheelsData:
+            // }
+        }
+
+        default:
+            return state;
     }
 };

@@ -141,7 +141,7 @@ class LinksScreen extends React.Component {
     this.state = {
       checked: false,
       meals: data,
-      locationIndex: -1,
+      locationIndex: 0,
       wheelName: ''
 
     }
@@ -171,7 +171,7 @@ class LinksScreen extends React.Component {
       }
     }
     
-    this.props.saveWheel(selectedWheel)
+    // this.props.saveWheel(selectedWheel)
     this.props.navigation.pop()
   }
 }
